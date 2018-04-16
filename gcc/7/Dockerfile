@@ -7,17 +7,12 @@ ENV BOOST_PREFIX=/usr/local \
 
 COPY get_boost.sh /root/get_boost.sh
 
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     curl \
 && rm -rf /var/lib/apt/lists/* \
-&& cd /root \
+&& cd $WORK_DIR \
 && ./get_boost.sh \
-&& cd boost_* \
-&& ./bootstrap.sh \
-&& ./b2 --without-python -j2 \
-&& ./b2 --without-python install \
-&& cd .. \
-&& rm -rf /root/* \
-&& sudo apt purge curl
+&& rm -rf $WORK_DIR/* \
+&& apt purge -y curl
 
 ENTRYPOINT /bin/bash
