@@ -1,4 +1,4 @@
-FROM gcc:7.3.0
+FROM gcc:5
 MAINTAINER Damian Jarek <damian.jarek93@gmail.com>
 
 ENV BOOST_PREFIX=/usr/local \
@@ -14,10 +14,10 @@ RUN apt-get update && apt-get install -y \
 && ./get_boost.sh \
 && cd boost_* \
 && ./bootstrap.sh \
-&& ./b2 --without-python headers \
 && ./b2 --without-python -j2 \
 && ./b2 --without-python install \
 && cd .. \
-&& rm -rf /root/*
+&& rm -rf /root/* \
+&& sudo apt purge curl
 
 ENTRYPOINT /bin/bash
