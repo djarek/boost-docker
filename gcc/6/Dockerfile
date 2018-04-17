@@ -7,8 +7,12 @@ ENV BOOST_PREFIX=/usr/local \
 
 COPY get_boost.sh /root/get_boost.sh
 
+WORKDIR $WORK_DIR
+
 RUN apt update && apt install -y \
     curl \
+    cmake \
+    lcov \
 && rm -rf /var/lib/apt/lists/* \
 && cd $WORK_DIR \
 && ./get_boost.sh \
