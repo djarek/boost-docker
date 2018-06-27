@@ -14,6 +14,7 @@ RUN apt update && apt install -y \
     curl \
     g++ \
     cmake \
+    lcov \
 && rm -rf /var/lib/apt/lists/* \
 && cd $WORK_DIR \
 && ./get_boost.sh \
