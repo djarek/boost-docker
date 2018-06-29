@@ -19,7 +19,6 @@ RUN apt update && apt install -y \
 && cd $WORK_DIR \
 && ./get_boost.sh \
 && rm -rf $WORK_DIR/* \
-&& apt purge -y curl \
 && apt clean -y
 
 ENTRYPOINT /bin/bash
